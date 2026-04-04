@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CollabMatch — Find Your Collaborator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ===== ONBOARDING ===== -->
+  <div id="screen-onboarding" class="screen active">
+    <div class="onboarding-hero">
+      <div class="logo">🤝</div>
+      <h1>CollabMatch</h1>
+      <p class="tagline">Find students to build projects,<br>win hackathons &amp; publish research.</p>
+      <button class="btn btn-primary btn-lg" id="btn-get-started">Get Started</button>
+    </div>
+  </div>
+
+  <!-- ===== PROFILE SETUP ===== -->
+  <div id="screen-setup" class="screen">
+    <div class="setup-container">
+      <div class="setup-header">
+        <h2>Create your profile</h2>
+        <p>Help others know what you're looking for</p>
+      </div>
+
+      <form id="setup-form" novalidate>
+        <div class="form-group">
+          <label for="f-name">Full Name *</label>
+          <input type="text" id="f-name" placeholder="Alex Johnson" required />
+        </div>
+        <div class="form-group">
+          <label for="f-university">University *</label>
+          <input type="text" id="f-university" placeholder="MIT, Stanford, IIT…" required />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="f-year">Year</label>
+            <select id="f-year">
+              <option value="1">1st Year</option>
+              <option value="2">2nd Year</option>
+              <option value="3">3rd Year</option>
+              <option value="4">4th Year</option>
+              <option value="5">Graduate</option>
+              <option value="6">PhD</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="f-major">Major</label>
+            <input type="text" id="f-major" placeholder="Computer Science" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Looking to collaborate on *</label>
+          <div class="tag-grid" id="collab-types">
+            <button type="button" class="tag-btn" data-value="hackathon">🏆 Hackathon</button>
+            <button type="button" class="tag-btn" data-value="research">📄 Research Paper</button>
+            <button type="button" class="tag-btn" data-value="project">🚀 Side Project</button>
+            <button type="button" class="tag-btn" data-value="startup">💡 Startup</button>
+            <button type="button" class="tag-btn" data-value="opensource">🔓 Open Source</button>
+            <button type="button" class="tag-btn" data-value="competition">🎯 Competition</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Skills (select all that apply)</label>
+          <div class="tag-grid" id="skills-grid">
+            <button type="button" class="tag-btn" data-value="frontend">Frontend</button>
+            <button type="button" class="tag-btn" data-value="backend">Backend</button>
+            <button type="button" class="tag-btn" data-value="ml">ML/AI</button>
+            <button type="button" class="tag-btn" data-value="mobile">Mobile</button>
+            <button type="button" class="tag-btn" data-value="devops">DevOps</button>
+            <button type="button" class="tag-btn" data-value="design">UI/UX Design</button>
+            <button type="button" class="tag-btn" data-value="data">Data Science</button>
+            <button type="button" class="tag-btn" data-value="blockchain">Blockchain</button>
+            <button type="button" class="tag-btn" data-value="embedded">Embedded</button>
+            <button type="button" class="tag-btn" data-value="research-skills">Research</button>
+            <button type="button" class="tag-btn" data-value="writing">Technical Writing</button>
+            <button type="button" class="tag-btn" data-value="pm">Product Mgmt</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="f-bio">Bio <span class="hint">(max 200 chars)</span></label>
+          <textarea id="f-bio" maxlength="200" rows="3"
+            placeholder="I'm passionate about building AI tools that help students learn faster…"></textarea>
+          <div class="char-count"><span id="bio-count">0</span>/200</div>
+        </div>
+
+        <div class="form-group">
+          <label>Profile color</label>
+          <div class="avatar-grid" id="avatar-grid">
+            <button type="button" class="avatar-btn selected" data-color="#6C63FF" style="background:#6C63FF"></button>
+            <button type="button" class="avatar-btn" data-color="#FF6584" style="background:#FF6584"></button>
+            <button type="button" class="avatar-btn" data-color="#43B89C" style="background:#43B89C"></button>
+            <button type="button" class="avatar-btn" data-color="#F7971E" style="background:#F7971E"></button>
+            <button type="button" class="avatar-btn" data-color="#2193B0" style="background:#2193B0"></button>
+            <button type="button" class="avatar-btn" data-color="#C94B4B" style="background:#C94B4B"></button>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Find Collaborators →</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== DISCOVER ===== -->
+  <div id="screen-discover" class="screen">
+    <!-- Top Bar -->
+    <header class="app-header">
+      <button class="icon-btn" id="btn-profile"><span>👤</span></button>
+      <h1 class="app-title">CollabMatch</h1>
+      <button class="icon-btn" id="btn-matches-nav">
+        <span>💬</span>
+        <span class="badge hidden" id="match-badge">0</span>
+      </button>
+    </header>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+      <button class="filter-chip active" data-filter="all">All</button>
+      <button class="filter-chip" data-filter="hackathon">🏆 Hackathon</button>
+      <button class="filter-chip" data-filter="research">📄 Research</button>
+      <button class="filter-chip" data-filter="project">🚀 Project</button>
+      <button class="filter-chip" data-filter="startup">💡 Startup</button>
+    </div>
+
+    <!-- Card Stack -->
+    <div class="card-stack" id="card-stack">
+      <div class="empty-state hidden" id="empty-state">
+        <div class="empty-icon">🎉</div>
+        <h3>You've seen everyone!</h3>
+        <p>Check back later or update your filters.</p>
+        <button class="btn btn-outline" id="btn-reset">Reset &amp; Start Over</button>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-bar">
+      <button class="action-btn pass" id="btn-pass" title="Pass">✕</button>
+      <button class="action-btn superlike" id="btn-super" title="Super Like">⭐</button>
+      <button class="action-btn like" id="btn-like" title="Connect">♥</button>
+    </div>
+  </div>
+
+  <!-- ===== MATCHES ===== -->
+  <div id="screen-matches" class="screen">
+    <header class="app-header">
+      <button class="icon-btn" id="btn-back-discover">←</button>
+      <h1 class="app-title">Matches</h1>
+      <div style="width:40px"></div>
+    </header>
+    <div class="matches-list" id="matches-list">
+      <div class="no-matches" id="no-matches">
+        <div class="empty-icon">💬</div>
+        <h3>No matches yet</h3>
+        <p>Start swiping to connect with students!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MATCH POPUP ===== -->
+  <div id="match-popup" class="popup-overlay hidden">
+    <div class="popup-card">
+      <div class="popup-icon">🎉</div>
+      <h2>It's a Match!</h2>
+      <div class="match-avatars">
+        <div class="match-avatar" id="popup-my-avatar"></div>
+        <div class="match-heart">♥</div>
+        <div class="match-avatar" id="popup-their-avatar"></div>
+      </div>
+      <p id="popup-match-text">You and <strong></strong> both want to collaborate!</p>
+      <button class="btn btn-primary" id="popup-view-matches">View Matches</button>
+      <button class="btn btn-outline" id="popup-keep-swiping">Keep Swiping</button>
+    </div>
+  </div>
+
+  <!-- ===== PROFILE VIEW ===== -->
+  <div id="screen-profile-view" class="screen">
+    <header class="app-header">
+      <button class="icon-btn" id="btn-back-from-profile">←</button>
+      <h1 class="app-title">My Profile</h1>
+      <button class="icon-btn" id="btn-edit-profile">✏️</button>
+    </header>
+    <div class="profile-view-content" id="my-profile-content"></div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "collabmatch",
+  "version": "1.0.0",
+  "description": "Tinder-like app for students to find collaborators",
+  "scripts": {
+    "build": "tsc && cp index.html dist/ && cp styles.css dist/",
+    "dev": "tsc --watch"
+  },
+  "devDependencies": {
+    "@netlify/functions": "^2.8.2",
+    "typescript": "^5.9.3"
+  }
+}
