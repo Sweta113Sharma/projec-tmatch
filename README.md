@@ -4,7 +4,7 @@ CollabMatch is a Tinder-like matchmaking web application designed specifically f
 
 ---
 
-## 🌟 Key Features
+## Key Features
 
 *   **Tinder-style Swiping Dashboard:** Easily review student cards showing names, majors, universities, bio descriptions, skill tags, and target project interests. Swipe right (or click Like) to connect, swipe left (or click Pass) to skip, or Superlike to stand out.
 *   **Onboarding & Profile Setup:** A step-by-step profile creation form allowing users to select their university, year of study, major, skillsets, and exact collaboration goals.
@@ -15,7 +15,7 @@ CollabMatch is a Tinder-like matchmaking web application designed specifically f
 
 ---
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 *   **Frontend Language:** TypeScript (strict type checking compiled to ES2020)
 *   **Structure & Styling:** Semantic HTML5, Vanilla CSS3 (custom layouts, flexbox/grid, and transition systems)
@@ -25,7 +25,7 @@ CollabMatch is a Tinder-like matchmaking web application designed specifically f
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```text
 projec-tmatch/
@@ -46,7 +46,7 @@ projec-tmatch/
 
 ---
 
-## ⚡ Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -86,7 +86,7 @@ projec-tmatch/
 
 ---
 
-## 🌐 Netlify Deployment
+## Netlify Deployment
 
 This project is optimized for zero-configuration Netlify deployment:
 1.  Connect your GitHub repository to Netlify.
